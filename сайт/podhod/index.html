@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Как я строю системы · Александр Жуков</title>
+<meta name="description" content="Принципы управления, устройство программы «План-факт», инженерные практики и порядок выпуска версий.">
+<meta property="og:title" content="Как я строю системы · Александр Жуков">
+<meta property="og:description" content="Принципы управления, устройство программы «План-факт», инженерные практики и порядок выпуска версий.">
+<meta property="og:image" content="https://alexander-zhu-kov.github.io/img/planerka.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../index.html">Александр Жуков<small>← на главную</small></a>
+  <nav class="tabs" aria-label="Направления"><a href="../krizis/index.html">Антикризисное управление и аудит</a><a href="../sistema/index.html">Систематизация бизнеса</a><a href="../cifra/index.html">Цифровая трансформация</a><a href="../podhod/index.html" aria-current="page">Как я строю системы</a></nav>
+</div></div>
+<div class="wrap">
+<main id="main" class="wrap" style="gap:56px">
+<header class="page-head">
+  <div class="eyebrow">Для руководителей и технических специалистов</div>
+  <h1>Как я строю системы</h1>
+  <p class="lead">Сначала процесс и ответственность, потом инструмент. Программу проектирую как руководитель, который будет ею пользоваться на планёрке, и выпускаю как инженер: с автотестами, миграциями базы и защитой данных.</p>
+  <nav class="anchors" aria-label="На этой странице"><a href="#mgmt">Принципы управления</a><a href="#arch">Устройство программы</a><a href="#eng">Инженерные практики</a><a href="#release">Выпуск версии</a></nav>
+</header>
+
+<section class="stand" id="mgmt">
+  <div class="desc" style="display:flex;flex-direction:column;gap:8px"><div class="eyebrow">Как директор</div><h2>Принципы, которые закладываю в систему</h2></div>
+  <div class="eng">
+    <div><b>Каждое отклонение — действие</b><p>Недовыполнение без причины закрыть нельзя. Причина ведёт к мероприятию с ответственным и сроком, статус виден на разборе.</p></div>
+    <div><b>История, а не правка задним числом</b><p>Цели, графики, план фиксируются с датой начала действия. Прошлые периоды не пересчитываются.</p></div>
+    <div><b>Права по ролям, а не по доверию</b><p>Каждая должность видит и меняет только своё. Изменение утверждённого плана — только с причиной и в журнал.</p></div>
+    <div><b>Данные готовит система</b><p>Планёрка и отчёты строятся из того, что вносят смены. Никто не собирает цифры накануне вечером.</p></div>
+    <div><b>Внедрение пакетами</b><p>Сначала то, что даёт результат завтра: факт, причины, планёрка. Остальное — когда команда готова.</p></div>
+    <div><b>Работает без IT-отдела</b><p>Ставится на обычный компьютер, работает без интернета, копии базы делает сама.</p></div>
+  </div>
+</section>
+
+<section class="stand" id="arch">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Как разработчик</div>
+      <h2>Устройство программы «План-факт»</h2>
+      <p>Один сервер в сети предприятия, браузер на любом устройстве. Вся логика проверок и расчётов на сервере, поэтому она одна для интерфейса и для автотестов.</p>
+    </div>
+    <ul class="points">
+      <li>Сервер и расчёты — Python, интерфейс — JavaScript без фреймворков</li>
+      <li>База SQLite с пошаговыми миграциями: обновление не теряет данные</li>
+      <li>Лицензии с цифровой подписью Ed25519, привязка к компьютеру</li>
+      <li>Название и модули программы заданы в одном месте</li>
+    </ul>
+  </div>
+  <div class="arch scroll"><svg viewBox="0 0 900 330" role="img" aria-label="Схема устройства программы «План-факт»">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="box" x="10" y="20" width="200" height="120" rx="8"/>
+<text class="t1" x="26" y="48">Рабочие места</text>
+<text class="t2" x="26" y="72">компьютер руководителя</text><text class="t2" x="26" y="92">телефон мастера и ОТК</text><text class="t2" x="26" y="112">QR-код на оборудовании</text>
+<rect class="box hl" x="300" y="20" width="300" height="190" rx="8"/>
+<text class="t1" x="318" y="48">Сервер в сети предприятия</text>
+<text class="t2" x="318" y="74">Python без сторонних библиотек</text>
+<text class="t2" x="318" y="96">права: 14 разделов × 6 должностей</text>
+<text class="t2" x="318" y="118">проверки на сервере, журнал изменений</text>
+<text class="t2" x="318" y="140">расчёты: готовность заказов, загрузка</text>
+<text class="t2" x="318" y="162">модули включаются лицензией</text>
+<text class="t2" x="318" y="184">отмена действий, корзина 30 дней</text>
+<rect class="box" x="690" y="20" width="200" height="120" rx="8"/>
+<text class="t1" x="706" y="48">База SQLite</text>
+<text class="t2" x="706" y="72">миграции схемы (версия 9)</text><text class="t2" x="706" y="92">копии каждый день</text><text class="t2" x="706" y="112">точки восстановления</text>
+<path class="ln" d="M210 80H296" marker-end="url(#ar)"/><path class="ln" d="M600 80H686" marker-end="url(#ar)"/>
+<text class="t2" x="222" y="72">браузер</text>
+<rect class="box" x="10" y="230" width="200" height="86" rx="8"/>
+<text class="t1" x="26" y="258">Excel</text><text class="t2" x="26" y="282">импорт и шаблоны</text><text class="t2" x="26" y="300">отчёты и выгрузки</text>
+<path class="ln" d="M210 272H330V214" marker-end="url(#ar)"/>
+<rect class="box" x="690" y="200" width="200" height="116" rx="8"/>
+<text class="t1" x="706" y="228">Выпуск версий</text>
+<text class="t2" x="706" y="252">298 автотестов</text><text class="t2" x="706" y="272">GitHub Actions</text><text class="t2" x="706" y="292">установщики Windows и Mac</text>
+<path class="ln" d="M686 258H560V214" marker-end="url(#ar)"/>
+<text class="t2" x="572" y="272">обновления</text>
+</svg></div>
+</section>
+
+<section class="stand" id="eng">
+  <div class="desc" style="display:flex;flex-direction:column;gap:8px"><div class="eyebrow">Инженерные практики</div><h2>Что делает программу надёжной</h2></div>
+  <div class="eng">
+    <div><b>298 автотестов</b><p>Запускаются перед каждым выпуском: права, расчёты, проверки сервера, миграции, обновления.</p></div>
+    <div><b>Сборка на GitHub Actions</b><p>Один запуск собирает установщик Windows и архив для Mac, проверяет запуск сервера и публикует релиз.</p></div>
+    <div><b>Защита данных</b><p>Ежедневные копии базы, точки восстановления, корзина на 30 дней, копия перед каждым обновлением.</p></div>
+    <div><b>Отмена действий</b><p>Последние 20 действий отменяются; если запись уже изменил другой пользователь, программа спросит.</p></div>
+    <div><b>Проверка обновлений</b><p>Программа сама узнаёт о новой версии и показывает список изменений до установки.</p></div>
+    <div><b>Документация в комплекте</b><p>Руководство администратора, памятки для ролей, справка «?» на каждом экране, окно «Что нового».</p></div>
+  </div>
+</section>
+
+<section class="stand" id="release">
+  <div class="desc" style="display:flex;flex-direction:column;gap:8px"><div class="eyebrow">Порядок работы</div><h2>Как выходит новая версия</h2><p class="muted">Пример — версия 3.3 «Заказы и готовность к отгрузке»: запрос появился на демонстрации предприятию.</p></div>
+  <ol class="flow">
+    <li>Задача с производства</li><li>Решения руководителя</li><li>Модель данных</li><li>Код и миграция</li><li>Автотесты</li><li>Проверка в браузере</li><li>Документация</li><li>Сборка и релиз</li>
+  </ol>
+  <div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">SQLite</span><span class="tag">HTML / CSS</span><span class="tag">GitHub Actions</span><span class="tag">Google Apps Script</span><span class="tag">Excel / openpyxl</span><span class="tag">Windows и macOS</span></div>
+  <p class="muted">Код программы закрыт — это коммерческий продукт. Открытые проекты и описание — <a href="https://github.com/alexander-zhu-kov">на GitHub</a>.</p>
+</section>
+<nav class="next" aria-label="Соседние разделы"><a href="../cifra/index.html">← Цифровая трансформация</a><a href="../index.html">На главную →</a></nav>
+<footer>
+  <span>Все цифры и названия в примерах условные и приведены для демонстрации.</span>
+  <span>© 2026 Жуков Александр · <a href="https://github.com/alexander-zhu-kov">GitHub</a></span>
+</footer>
+</main>
+</div>
+<dialog id="lb" aria-label="Снимок"><button type="button" class="lb-close" aria-label="Закрыть">✕</button><img alt=""><p class="lb-cap"></p><p class="lb-hint">Закрыть: ✕, клавиша Esc или нажатие рядом со снимком</p></dialog>
+<script src="../assets/site.js"></script>
+</body>
+</html>
