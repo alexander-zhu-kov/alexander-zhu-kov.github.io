@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Цифровая трансформация · Александр Жуков</title>
+<meta name="description" content="Собственные цифровые инструменты контроля производства: программа «План-факт» (план-факт, планёрка, заказы, ОТК, простои, время операций), дашборд, модель загрузки мощностей.">
+<meta property="og:title" content="Цифровая трансформация · Александр Жуков">
+<meta property="og:description" content="Собственные цифровые инструменты контроля производства: программа «План-факт» (план-факт, планёрка, заказы, ОТК, простои, время операций), дашборд, модель загрузки мощностей.">
+<meta property="og:image" content="https://alexander-zhu-kov.github.io/img/planerka.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../index.html">Александр Жуков<small>← на главную</small></a>
+  <nav class="tabs" aria-label="Направления"><a href="../krizis/index.html">Антикризисное управление и аудит</a><a href="../sistema/index.html">Систематизация бизнеса</a><a href="../cifra/index.html" aria-current="page">Цифровая трансформация</a><a href="../podhod/index.html">Как я строю системы</a></nav>
+</div></div>
+<div class="wrap">
+<main id="main" class="wrap" style="gap:56px">
+<header class="page-head">
+  <div class="eyebrow">Направление 3 · отклонения видны в конце месяца</div>
+  <h1>Цифровая трансформация</h1>
+  <p class="lead">Собственные цифровые инструменты контроля. Работают в сети предприятия, без облака и долгого IT-проекта, и поддерживают ту систему управления, которую я выстраиваю: планёрку, причины отклонений, мероприятия, качество, загрузку мощностей.</p>
+  <nav class="anchors" aria-label="На этой странице"><a href="#planfact">План-факт</a><a href="#orders">Заказы</a><a href="#screens">Экраны программы</a><a href="#downtime">Простои по QR</a><a href="#timestudy">Время операций</a><a href="#dashboard">Дашборд</a><a href="#capacity">Загрузка мощностей</a></nav>
+</header>
+
+<section class="stand" id="planfact">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Система 1 · программа «План-факт», версия 3.3</div>
+      <h2>Контроль выполнения плана каждый день</h2>
+      <p>Руководитель видит выполнение плана по каждому изделию в штуках, кубах и рублях. У каждого отклонения есть причина, мероприятие, ответственный и срок. Утренняя планёрка идёт по экрану программы шаг за шагом, решения сразу становятся задачами с контролем срока.</p>
+      <p>Программа для Windows и Mac: ставится на компьютер предприятия и работает в локальной сети. Мастера, ОТК и технологи заходят через браузер с рабочего компьютера или телефона. Первая версия сделана для завода ЖБИ.</p>
+      <div class="tags"><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">браузер и телефон</span><span class="tag">без облака</span><span class="tag">4 модуля</span></div>
+    </div>
+    <ul class="points">
+      <li>План месяца по дням с утверждением: после утверждения изменения только с причиной и в журнал. Загрузка форм и линий видна при планировании</li>
+      <li>Факт по сменам с телефона, причина каждого отставания, сравнение смен</li>
+      <li>Планёрка по шагам за любой период: план, отставания, качество, простои, заказы под угрозой, мероприятия, решения. Протокол формируется сам</li>
+      <li>Заказы и готовность к отгрузке по клиентам и проектам, критичные позиции, план из заказов</li>
+      <li>Модуль «Качество (ОТК)»: брак и доработка по видам дефектов, Парето, паспорта качества</li>
+      <li>Права по разделам для каждой должности, отмена действий, журнал, корзина, точки восстановления, проверка обновлений</li>
+    </ul>
+  </div>
+  <div class="bench">
+    <div class="bench-top">
+      <div class="chips" role="group" aria-label="Период"><span class="chips-label">Период:</span>
+        <button class="chip" type="button" data-per="week" aria-pressed="false">Неделя</button>
+        <button class="chip" type="button" data-per="month" aria-pressed="true">Сентябрь</button>
+        <button class="chip" type="button" data-per="ytd" aria-pressed="false">С начала года</button>
+      </div>
+      <span class="demo-note">условные данные</span>
+    </div>
+    <div class="kpis" id="pf-kpis"></div>
+    <div class="grid2">
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+        <div class="scroll"><table id="pf-table"></table></div>
+        <div class="legend"><span><i style="background:var(--good)"></i>100% и выше</span><span><i style="background:var(--warn)"></i>90–99%</span><span><i style="background:var(--bad)"></i>ниже 90%</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+        <div style="display:flex;flex-direction:column;gap:10px"><h3>Причины недовыполнения, шт</h3><div class="bars" id="pf-reasons"></div></div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <h3>Мероприятия</h3>
+          <div class="actions">
+            <div class="act"><div>Изготовить 2 доп. формы под ПБ-1 (плита балконная)</div><span class="status work">В работе</span><div class="meta">Нач. цеха №2 · до 10.10</div></div>
+            <div class="act"><div>График ППР бетоносмесителя БСУ-2, резервный редуктор на складе</div><span class="status done">Выполнено</span><div class="meta">Главный механик · до 25.09</div></div>
+            <div class="act"><div>Закрыть вакансии формовщиков: 3 чел. во вторую смену</div><span class="status late">Просрочено</span><div class="meta">HR · до 20.09</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;min-width:0;border-top:1px solid var(--line);padding-top:18px">
+      <div class="bench-top"><h3>Загрузка форм при планировании, % по дням</h3><div class="legend"><span><i style="background:var(--good-soft);outline:1px solid var(--good)"></i>до 85%</span><span><i style="background:var(--warn-soft);outline:1px solid var(--warn)"></i>85–100%</span><span><i style="background:var(--bad-soft);outline:1px solid var(--bad)"></i>перегруз: перенести план</span></div></div>
+      <div class="scroll"><div class="heat" id="forms"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="stand" id="orders">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Новое в 3.3 · заказы</div>
+      <h2>Готовность к отгрузке по клиентам и проектам</h2>
+      <p>План производства привязан к заказам. Программа сама распределяет выпущенное по заказам (приоритет, срок, дата заказа), считает, сколько дней нужно на остаток при текущей мощности, и показывает, какой заказ под угрозой ещё до срыва срока.</p>
+    </div>
+    <ul class="points">
+      <li>Клиент → проект → заказ → партии со своими сроками</li>
+      <li>Готово = выпущено, не в браке и не на доработке, минус отгружено</li>
+      <li>«Критичные позиции»: каких изделий не хватает и сколько в день</li>
+      <li>Кнопка «В план»: недостающее раскладывается в план месяца с причиной</li>
+      <li>Импорт заказов из Excel; заказы под угрозой — шаг планёрки</li>
+    </ul>
+  </div>
+  <div class="bench">
+    <div class="bench-top">
+      <div class="chips" role="group" aria-label="Состояние"><span class="chips-label">Показать:</span>
+        <button class="chip" type="button" data-ord="all" aria-pressed="true">Все заказы</button>
+        <button class="chip" type="button" data-ord="risk" aria-pressed="false">Под угрозой и срыв</button>
+        <button class="chip" type="button" data-ord="ready" aria-pressed="false">Готово</button>
+      </div>
+      <span class="demo-note">условные данные</span>
+    </div>
+    <div class="scroll"><table id="ord-table"></table></div>
+  </div>
+</section>
+
+<section class="stand" id="screens">
+  <div class="desc" style="display:flex;flex-direction:column;gap:8px">
+    <div class="eyebrow">Экраны программы</div>
+    <h2>Как это выглядит в работе</h2>
+    <p>Снимки настоящей программы на примерных данных. <span class="hint">🔍 Нажмите на снимок, чтобы открыть крупно.</span></p>
+  </div>
+  <div class="gallery">
+    <figure><button type="button" class="shot"><img src="../img/planerka.webp" alt="Планёрка: шаг «Выполнение плана» — итоги дня по участкам" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Планёрка: шаг «Выполнение плана» — итоги дня по участкам</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/actions.webp" alt="Планёрка: мероприятия — «Выполнено» и «Перенести срок» одним нажатием" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Планёрка: мероприятия — «Выполнено» и «Перенести срок» одним нажатием</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/dashboard.webp" alt="Дашборд руководителя: выпуск, объём, сделка, дисциплина, качество" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Дашборд руководителя: выпуск, объём, сделка, дисциплина, качество</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/shifts.webp" alt="Сравнение смен: выпуск, брак и доработка, по участкам и по дням" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Сравнение смен: выпуск, брак и доработка, по участкам и по дням</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/timestudy.webp" alt="Время операций: Ямадзуми, такт, узкое место, потери" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Время операций: Ямадзуми, такт, узкое место, потери</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/downtime.webp" alt="Простои оборудования: % от планового времени, Парето причин" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Простои оборудования: % от планового времени, Парето причин</figcaption></figure>
+  </div>
+</section>
+
+<section class="stand" id="downtime">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Модуль программы</div>
+      <h2>Учёт простоев по QR-кодам</h2>
+      <p>На каждом станке висит QR-код. Оператор сканирует его телефоном, выбирает причину, а после ремонта одним нажатием закрывает простой. Руководитель видит потери в тот же день, а не в конце месяца.</p>
+      <p>Первая версия работала на Google Таблицах; теперь это модуль «План-факта» в сети предприятия, а история из Google-таблицы загружается в программу.</p>
+    </div>
+    <ul class="points">
+      <li>Приложение на телефон не нужно: камера открывает страницу станка</li>
+      <li>Забытые простои закрываются автоматически, в журнале видно, кто открыл и закрыл</li>
+      <li>% простоя от планового времени по графику работы с учётом праздников</li>
+      <li>Цели с историей: прошлые периоды сравниваются с той целью, что действовала тогда</li>
+      <li>Парето причин, тепловая карта «оборудование × тип простоя»</li>
+    </ul>
+  </div>
+  <div class="bench">
+    <div class="bench-top"><h3>Как работает у станка</h3><span class="demo-note">пример экрана телефона · кнопки здесь не нажимаются</span></div>
+    <div class="qr-flow">
+      <div class="phone"><div class="step">1 · Скан</div><svg class="qr-mark" viewBox="0 0 21 21" aria-label="QR-код оборудования" id="qr"></svg><div class="eq" style="text-align:center">Пресс П-06 · Участок формовки</div><div class="btn">Открыть форму</div></div>
+      <div class="phone"><div class="step">2 · Причина</div><div class="opt">Отказ оборудования</div><div class="opt sel">Нет материала</div><div class="opt">Переналадка</div><div class="opt">Нет персонала</div><div class="btn">Начать простой</div></div>
+      <div class="phone"><div class="step">3 · Идёт простой</div><div class="eq">Пресс П-06 · Нет материала</div><div class="timer num" id="timer">00:17:42</div><div class="btn stop">Простой завершён</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+      <div class="bench-top"><h3>% простоя от планового времени, по неделям</h3><div class="legend"><span><i style="background:var(--accent)"></i>в пределах цели</span><span><i style="background:var(--bad)"></i>выше цели</span><span>- - цель</span></div></div>
+      <div class="scroll"><svg id="dt-chart" viewBox="0 0 900 230" style="width:100%;min-width:560px;height:auto" role="img" aria-label="График процента простоя по неделям"></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="stand" id="timestudy">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Модуль программы</div>
+      <h2>Время операций: хронометраж и балансировка линии</h2>
+      <p>Технолог замеряет операции по шагам — в программе или в Excel-шаблоне, который она же выдаёт и потом читает. Программа строит Ямадзуми: какая операция узкое место, сколько времени уходит на потери и хватает ли людей под такт.</p>
+    </div>
+    <ul class="points">
+      <li>Шаги размечаются по типам: ценность, необходимое, потери</li>
+      <li>Такт из доступного времени и потребности, баланс линии, численность по такту</li>
+      <li>Сравнение замеров «было / стало» по каждой операции</li>
+      <li>Мероприятия с оценкой эффекта в секундах на изделие и часах в смену</li>
+    </ul>
+  </div>
+  <div class="bench">
+    <div class="bench-top">
+      <div class="chips" role="group" aria-label="Замер"><span class="chips-label">Показать:</span>
+        <button class="chip" type="button" data-ts="before" aria-pressed="true">Замер до</button>
+        <button class="chip" type="button" data-ts="after" aria-pressed="false">После мероприятий</button>
+      </div>
+      <span class="demo-note">условные данные</span>
+    </div>
+    <div class="kpis" id="ts-kpis"></div>
+    <div class="scroll"><svg id="ts-chart" viewBox="0 0 900 280" style="width:100%;min-width:560px;height:auto" role="img" aria-label="Ямадзуми: время операций по типам работы"></svg></div>
+    <div class="legend"><span><i style="background:var(--good)"></i>ценность</span><span><i style="background:var(--warn)"></i>необходимое</span><span><i style="background:var(--bad)"></i>потери</span><span>- - такт</span></div>
+  </div>
+</section>
+
+<section class="stand" id="dashboard">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Система 2</div>
+      <h2>Дашборд производства, качества и простоев</h2>
+      <p>Дашборд собирает данные из тех Excel-файлов, которые предприятие уже ведёт. Повторная загрузка не задваивает записи. Каждый показатель сравнивается с целью и с прошлым периодом.</p>
+    </div>
+    <ul class="points">
+      <li>Три направления: выполнение плана, доля брака, % простоя</li>
+      <li>Шаг графиков: дни, недели, месяцы, годы и накопительно с начала года</li>
+      <li>Роли и вход по паролю, журнал аудита, работа в локальной сети</li>
+      <li>Столбцы и показатели настраиваются под файлы предприятия без изменения кода</li>
+    </ul>
+  </div>
+  <div class="bench">
+    <div class="bench-top"><h3>Сентябрь, предприятие целиком</h3><span class="demo-note">условные данные</span></div>
+    <div class="kpis">
+      <div class="kpi"><span class="l">Выполнение плана</span><span class="v">96,4%</span><span class="state warn">▼ цель 98% · было 94,1%</span></div>
+      <div class="kpi"><span class="l">Доля брака</span><span class="v">1,8%</span><span class="state good">✓ цель ≤ 2,5% · было 2,3%</span></div>
+      <div class="kpi"><span class="l">% простоя</span><span class="v">6,2%</span><span class="state good">✓ цель ≤ 8% · было 9,4%</span></div>
+      <div class="kpi"><span class="l">Выработка на человека</span><span class="v">1,42 м³/смена</span><span class="state good">▲ +6% к августу</span></div>
+      <div class="kpi"><span class="l">Трудоёмкость</span><span class="v">5,6 чел.-ч/м³</span><span class="state good">▼ −0,4 к августу</span></div>
+      <div class="kpi"><span class="l">Себестоимость 1 м³</span><span class="v">14 870 ₽</span><span class="state bad">▲ +2,1% к плану</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="stand" id="capacity">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Система 3</div>
+      <h2>Планирование выпуска и загрузки мощностей</h2>
+      <p>По плану продаж модель считает, сколько полуфабрикатов каждого уровня нужно выпустить и когда запускать партии. Затем раскладывает работу по оборудованию и показывает, где не хватает мощности и сколько нужно сверхурочных.</p>
+    </div>
+    <ul class="points">
+      <li>Партии с минимальным и оптимальным размером, страховой запас, опережение запуска</li>
+      <li>Календарь оборудования: ППР, дополнительные смены, рабочие субботы</li>
+      <li>Сверхурочные распределяются ближе к сроку и в пределах лимита</li>
+      <li>Главный лист для мастеров: план по каждой машине на каждый день</li>
+    </ul>
+  </div>
+  <div class="bench">
+    <div class="bench-top"><h3>Загрузка оборудования, % от доступного времени</h3><div class="legend"><span><i style="background:var(--good-soft);outline:1px solid var(--good)"></i>до 85%</span><span><i style="background:var(--warn-soft);outline:1px solid var(--warn)"></i>85–100%</span><span><i style="background:var(--bad-soft);outline:1px solid var(--bad)"></i>нужны сверхурочные</span><span><i style="background:var(--soft)"></i>ППР</span></div></div>
+    <div class="scroll"><div class="heat" id="heat2"></div></div>
+    <span class="demo-note">условные данные · горизонт планирования в модели 28 дней, показаны 10 рабочих</span>
+  </div>
+</section>
+<nav class="next" aria-label="Соседние разделы"><a href="../sistema/index.html">← Систематизация бизнеса</a><a href="../podhod/index.html">Как я строю системы →</a></nav>
+<footer>
+  <span>Все цифры и названия в примерах условные. Живую работу программы показываю на встрече.</span>
+  <span>© 2026 Жуков Александр · <a href="https://github.com/alexander-zhu-kov">GitHub</a></span>
+</footer>
+</main>
+</div>
+<dialog id="lb" aria-label="Снимок"><button type="button" class="lb-close" aria-label="Закрыть">✕</button><img alt=""><p class="lb-cap"></p><p class="lb-hint">Закрыть: ✕, клавиша Esc или нажатие рядом со снимком</p></dialog>
+<script src="../assets/site.js"></script>
+</body>
+</html>
