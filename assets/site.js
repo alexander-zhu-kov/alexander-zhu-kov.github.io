@@ -12,6 +12,13 @@
     })});
   }
 
+  // пришли по ссылке на раздел (#orders, #pnl…) — раскрыть его подробности
+  var openHash=function(){
+    var el=location.hash&&document.getElementById(location.hash.slice(1)); if(!el)return;
+    var d=el.querySelector('details.more'); if(d)d.open=true;
+  };
+  window.addEventListener('hashchange',openHash); openHash();
+
   // копирование контактов
   document.querySelectorAll('.copy').forEach(function(b){
     b.addEventListener('click',function(){

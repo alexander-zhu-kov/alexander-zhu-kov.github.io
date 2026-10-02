@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>«Завод в цифрах» · Александр Жуков</title>
+<meta name="description" content="Программа «Завод в цифрах»: показатели завода из файлов Excel, причины отклонений и действия со статусами, P&L к бюджету, персонал: текучесть, выработка, ФОТ.">
+<meta property="og:title" content="«Завод в цифрах» · Александр Жуков">
+<meta property="og:description" content="Программа «Завод в цифрах»: показатели завода из файлов Excel, причины отклонений и действия со статусами, P&L к бюджету, персонал: текучесть, выработка, ФОТ.">
+<meta property="og:image" content="https://alexander-zhu-kov.github.io/img/planerka.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../index.html">Александр Жуков<small>← на главную</small></a>
+  <nav class="tabs" aria-label="Направления"><a href="../krizis/index.html">Антикризисное управление и аудит</a><a href="../sistema/index.html">Систематизация бизнеса</a><a href="../cifra/index.html" aria-current="page">Цифровая трансформация</a><a href="../podhod/index.html">Как я строю системы</a></nav>
+</div></div>
+<div class="wrap">
+<main id="main" class="wrap" style="gap:56px">
+<header class="page-head">
+  <div class="eyebrow"><a href="../cifra/index.html">Цифровая трансформация</a> · собственная программа · версия 0.4 · Windows и Mac</div>
+  <h1>«Завод в цифрах»</h1>
+  <p class="lead">Производство, качество, деньги и люди — на одном экране и в одной логике: показатель, цель, отклонение, причина, действие, результат. Данные берутся из тех файлов Excel, которые завод уже ведёт.</p>
+  <div class="sysgrid four">
+    <a href="#causes"><b>Причины и действия</b><span>ТОП-3 причины, ответственный, срок, статус, эффект</span></a>
+    <a href="#pnl"><b>Финансы: P&amp;L</b><span>факт к бюджету и прогнозу, EBITDA, чистая прибыль, рентабельность</span></a>
+    <a href="#hr"><b>Персонал</b><span>численность, текучесть, выработка на человека, доля ФОТ</span></a>
+    <a href="#prod"><b>Производство и качество</b><span>выпуск, брак, простои за день, неделю, месяц, год</span></a>
+  </div>
+</header>
+
+<section class="stand" id="causes">
+  <div class="stand-head one">
+    <div class="desc">
+      <div class="eyebrow">Главное · не цифры, а что с ними делают</div>
+      <h2>Каждое отклонение доводится до действия и результата</h2>
+      <p>Показатель вне цели не закрывается сам. Его владелец называет до трёх главных причин — программа подсказывает их из данных — и по каждой назначает действие с ответственным и сроком. Через месяц видно, что стало с показателем и повторилась ли причина.</p>
+    </div>
+  </div>
+  <div class="bench">
+    <div class="bench-top"><h3>Как это работает</h3><span class="demo-note">от файла до результата</span></div>
+    <ol class="flow">
+      <li>Файлы Excel завода</li><li>Показатель и цель</li><li>Отклонение</li><li>ТОП-3 причины</li><li>Действие: кто и когда</li><li>Статус и срок</li><li>Эффект через месяц</li>
+    </ol>
+    <div class="bench-top" style="border-top:1px solid var(--line);padding-top:18px">
+      <div class="chips" role="group" aria-label="Показатель"><span class="chips-label">Показатель:</span>
+        <button class="chip" type="button" data-zc="scrap" aria-pressed="true">Доля брака</button>
+        <button class="chip" type="button" data-zc="down" aria-pressed="false">Простои оборудования</button>
+        <button class="chip" type="button" data-zc="out" aria-pressed="false">Выпуск продукции</button>
+      </div>
+      <span class="demo-note">условные данные</span>
+    </div>
+    <div class="kpis" id="zc-kpis"></div>
+    <div class="grid2">
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:0"><h3 id="zc-ct">Три главные причины</h3><div class="bars" id="zc-causes"></div><p class="muted" id="zc-hint" style="font-size:13px;margin:0"></p></div>
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><h3>Действия по причинам</h3><div class="actions" id="zc-acts"></div></div>
+    </div>
+    <p id="zc-res" style="margin:0;border-top:1px solid var(--line);padding-top:14px"></p>
+  </div>
+  <details class="more"><summary>Как это выглядит в программе: 3 снимка</summary><div class="more-in">
+  <ul class="points">
+    <li>Причины: ТОП-3 с долей вклада; подсказка из журналов — виды дефектов, причины простоев, изделия с отставанием</li>
+    <li>Действия: ответственный, срок, статус. Перенос срока — только с причиной. Просроченные видны на главном экране</li>
+    <li>Эффект: показатель в месяце разбора и в месяце после срока, повторилась ли причина; оценка «помогло / частично / не помогло»</li>
+    <li>Совещание по показателям: что вне цели, причины, действия; протокол сохраняется и печатается с логотипом завода</li>
+  </ul>
+  <div class="gallery">
+    <figure><button type="button" class="shot"><img src="../img/zc-causes.webp" alt="Причины и действия: ТОП-3 с долей вклада, ответственный, срок, статус, показатель до и после" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Причины и действия: ТОП-3 с долей вклада, ответственный, срок, статус, показатель до и после</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-actions.webp" alt="Все действия: в работе, просрочено, выполнено в срок, сколько помогло" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Все действия: в работе, просрочено, выполнено в срок, сколько помогло</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-meeting.webp" alt="Совещание: показатель вне цели, его причины и действия со статусами — основа протокола" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Совещание: показатель вне цели, его причины и действия со статусами — основа протокола</figcaption></figure>
+  </div>
+  </div></details>
+</section>
+
+<section class="stand" id="pnl">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Финансы</div>
+      <h2>P&amp;L по месяцам: факт к бюджету, EBITDA, чистая прибыль</h2>
+      <p>Отчёт о прибылях и убытках собирается из бюджета доходов и расходов в Excel. Директор видит не только выпуск и брак, но и то, во что они превращаются в деньгах: где себестоимость ушла от бюджета и что будет с прибылью к концу года.</p>
+      <p>Финансовые показатели — те же плитки с целью и трендом. EBITDA ниже бюджета разбирается так же, как брак: причины, действия, срок.</p>
+    </div>
+    <figure><button type="button" class="shot"><img src="../img/zc-pnl.webp" alt="P&amp;L по месяцам: цвет ячейки — отношение к бюджету; ниже — рентабельность и график выбранной строки" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>P&amp;L по месяцам: цвет ячейки — отношение к бюджету; ниже — рентабельность и график выбранной строки</figcaption></figure>
+  </div>
+  <details class="more"><summary>Что есть в отчёте</summary><div class="more-in">
+  <ul class="points">
+    <li>Месяцы в столбцах; «по месяцам» или «накопительно»; в ячейках факт или отклонение</li>
+    <li>Сравнение с бюджетом или с прогнозом; цвет ячейки: не хуже бюджета, хуже в пределах 5%, хуже больше чем на 5%</li>
+    <li>Итоги: факт и бюджет с начала года, отклонение, бюджет на год, «ожидается за год» (факт закрытых месяцев плюс бюджет или прогноз оставшихся), прошлый год за те же месяцы</li>
+    <li>Строки: выручка и себестоимость с составляющими, валовая прибыль, коммерческие и управленческие расходы, EBIT, EBITDA, проценты, налог, чистая прибыль</li>
+    <li>Чего нет в файле завода, программа считает сама и помечает «расчёт»: EBITDA, прибыль до налогообложения, чистую прибыль</li>
+    <li>Рентабельность и доли: валовая, по EBITDA, операционная, чистая, себестоимость и управленческие расходы в выручке</li>
+    <li>Щелчок по строке — график этой строки к бюджету и прошлому году; печать и PDF</li>
+  </ul>
+  </div></details>
+</section>
+
+<section class="stand" id="hr">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Персонал</div>
+      <h2>Люди в тех же цифрах, что производство и деньги</h2>
+      <p>Численность, приём и увольнения берутся из кадрового файла. Текучесть, выработка на человека и доля ФОТ в выручке считаются сами и сравниваются с целью, прошлым месяцем и прошлым годом.</p>
+      <p>Так видна связь, которую обычно собирают вручную: ушли люди — упала выработка — выросла доля ФОТ — просела прибыль.</p>
+    </div>
+    <figure><button type="button" class="shot"><img src="../img/zc-hr.webp" alt="Экран «Персонал»: численность, текучесть, выработка на человека, приём и увольнения, ФОТ и его доля в выручке" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Экран «Персонал»: численность, текучесть, выработка на человека, приём и увольнения, ФОТ и его доля в выручке</figcaption></figure>
+  </div>
+  <details class="more"><summary>Что считается по персоналу</summary><div class="more-in">
+  <ul class="points">
+    <li>Численность на дату, среднесписочная, принято, уволено — из файла отдела кадров как есть</li>
+    <li>Текучесть за месяц: уволено к среднесписочной, с целью и состоянием «в цели / вне цели»</li>
+    <li>Выработка на человека: выпуск к среднесписочной. Такой расчётный показатель задаётся в настройке, без программиста</li>
+    <li>ФОТ к бюджету и доля ФОТ в выручке — мост между персоналом и P&amp;L</li>
+    <li>Отдельный экран «Персонал» для директора по персоналу; по текучести — те же причины и действия</li>
+  </ul>
+  <div class="gallery">
+    <figure><button type="button" class="shot"><img src="../img/zc-hr-card.webp" alt="Карточка «Текучесть за месяц»: год по месяцам к цели и к прошлому году" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Карточка «Текучесть за месяц»: год по месяцам к цели и к прошлому году</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-screens.webp" alt="Свой экран собирается из плиток: состав, порядок, размер" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Свой экран собирается из плиток: состав, порядок, размер</figcaption></figure>
+  </div>
+  </div></details>
+</section>
+
+<section class="stand" id="prod">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Производство и качество</div>
+      <h2>Выпуск, брак и простои — каждый день, а не в конце месяца</h2>
+      <p>У каждого показателя цель или план из файла, допуск, состояние, тренд и сравнение с прошлым годом. Щелчок по плитке открывает карточку: динамика, месяцы и годы, из чего складывается результат.</p>
+    </div>
+    <figure><button type="button" class="shot"><img src="../img/zc-main.webp" alt="Показатели по разделам: состояние к цели, тренд, сравнение с прошлым месяцем и годом" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Показатели по разделам: состояние к цели, тренд, сравнение с прошлым месяцем и годом</figcaption></figure>
+  </div>
+  <details class="more"><summary>Возможности и карточка показателя</summary><div class="more-in">
+  <ul class="points">
+    <li>Периоды: день, неделя, месяц, год; итог с начала года</li>
+    <li>Состояние «в цели / в допуске / вне цели», тренд за три последних периода</li>
+    <li>Карточка: график столбцами, линией или накопительно; таблица «месяцы × годы»; разложение по изделиям, видам дефектов, оборудованию</li>
+    <li>Расчётные показатели: доля брака, выработка, рентабельность — отношение или сумма других показателей</li>
+  </ul>
+  <div class="gallery">
+    <figure><button type="button" class="shot"><img src="../img/zc-card.webp" alt="Карточка показателя: динамика по дням к цели, месяцы и годы, из чего складывается" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Карточка показателя: динамика по дням к цели, месяцы и годы, из чего складывается</figcaption></figure>
+  </div>
+  </div></details>
+</section>
+
+<section class="stand" id="how">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Как работает</div>
+      <h2>Файлы Excel остаются как есть</h2>
+      <p>Программа ставится на компьютер предприятия (Windows или Mac) и читает папки с файлами: план-факт, журналы ОТК и простоев, бюджет, персонал. Раскладку файла она распознаёт сама; необычный файл ей показывают щелчками по листу — и следующие такие читаются сами.</p>
+      <div class="tags"><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">браузер</span><span class="tag">без облака</span><span class="tag">Excel как есть</span></div>
+    </div>
+    <figure><button type="button" class="shot"><img src="../img/zc-setup.webp" alt="Файл Excel читается как есть: программа показывает, что она взяла — даты, значения — и что пропустила" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Файл Excel читается как есть: программа показывает, что она взяла — даты, значения — и что пропустила</figcaption></figure>
+  </div>
+  <details class="more"><summary>Настройка, роли и выпуск версий</summary><div class="more-in">
+  <ul class="points">
+    <li>Свои экраны для директора, главного инженера, финансиста; настройка карточки показателя; свои разделы</li>
+    <li>Роли: администратор, руководитель (ведёт разбор своих показателей), просмотр</li>
+    <li>Ежедневные копии базы, проверка обновлений, название и логотип завода в отчётах</li>
+    <li>137 автотестов перед каждым выпуском; установщик Windows и архив для Mac собираются на GitHub Actions</li>
+  </ul>
+  </div></details>
+</section>
+<nav class="next" aria-label="Соседние разделы"><a href="../cifra/index.html">← Цифровая трансформация</a><a href="../podhod/index.html">Как я строю системы →</a></nav>
+<footer>
+  <span>Все цифры и названия в примерах условные. Живую работу программы показываю на встрече.</span>
+  <span>© 2026 Жуков Александр · <a href="https://github.com/alexander-zhu-kov">GitHub</a></span>
+</footer>
+</main>
+</div>
+<dialog id="lb" aria-label="Снимок"><button type="button" class="lb-close" aria-label="Закрыть">✕</button><img alt=""><p class="lb-cap"></p><p class="lb-hint">Закрыть: ✕, клавиша Esc или нажатие рядом со снимком</p></dialog>
+<script src="../assets/site.js"></script>
+</body>
+</html>
