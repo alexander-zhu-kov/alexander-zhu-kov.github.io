@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Цифровая трансформация · Александр Жуков</title>
-<meta name="description" content="Собственные цифровые инструменты контроля производства: программа «План-факт» (план-факт, планёрка, заказы, ОТК, простои, время операций), дашборд, модель загрузки мощностей.">
+<meta name="description" content="Собственные цифровые инструменты контроля производства: программа «План-факт» (план-факт, планёрка, заказы, ОТК, простои, время операций), программа «Завод в цифрах» (показатели из Excel, причины отклонений, действия со статусами и эффектом), модель загрузки мощностей.">
 <meta property="og:title" content="Цифровая трансформация · Александр Жуков">
-<meta property="og:description" content="Собственные цифровые инструменты контроля производства: программа «План-факт» (план-факт, планёрка, заказы, ОТК, простои, время операций), дашборд, модель загрузки мощностей.">
+<meta property="og:description" content="Собственные цифровые инструменты контроля производства: программа «План-факт» (план-факт, планёрка, заказы, ОТК, простои, время операций), программа «Завод в цифрах» (показатели из Excel, причины отклонений, действия со статусами и эффектом), модель загрузки мощностей.">
 <meta property="og:image" content="https://alexander-zhu-kov.github.io/img/planerka.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
   <div class="eyebrow">Направление 3 · отклонения видны в конце месяца</div>
   <h1>Цифровая трансформация</h1>
   <p class="lead">Собственные цифровые инструменты контроля. Работают в сети предприятия, без облака и долгого IT-проекта, и поддерживают ту систему управления, которую я выстраиваю: планёрку, причины отклонений, мероприятия, качество, загрузку мощностей.</p>
-  <nav class="anchors" aria-label="На этой странице"><a href="#planfact">План-факт</a><a href="#orders">Заказы</a><a href="#screens">Экраны программы</a><a href="#downtime">Простои по QR</a><a href="#timestudy">Время операций</a><a href="#dashboard">Дашборд</a><a href="#capacity">Загрузка мощностей</a></nav>
+  <nav class="anchors" aria-label="На этой странице"><a href="#planfact">План-факт</a><a href="#orders">Заказы</a><a href="#screens">Экраны программы</a><a href="#downtime">Простои по QR</a><a href="#timestudy">Время операций</a><a href="#zc">Завод в цифрах</a><a href="#zc-screens">Экраны аналитики</a><a href="#dashboard">Дашборд</a><a href="#capacity">Загрузка мощностей</a></nav>
 </header>
 
 <section class="stand" id="planfact">
@@ -183,10 +183,70 @@
   </div>
 </section>
 
+<section class="stand" id="zc">
+  <div class="stand-head">
+    <div class="desc">
+      <div class="eyebrow">Система 2 · программа «Завод в цифрах», версия 0.4</div>
+      <h2>Показатели завода — и что с ними делают</h2>
+      <p>Программа читает файлы Excel, которые завод уже ведёт: выпуск, журналы ОТК и простоев, бюджет доходов и расходов, персонал. Файлы остаются как есть, отдельно вносить данные не нужно. Из них получаются показатели за день, неделю, месяц и год — с целью, трендом и сравнением с прошлым годом.</p>
+      <p><b>Цифры — только половина.</b> Показатель вне цели не закрывается сам: его владелец называет до трёх главных причин и по каждой назначает действие с ответственным и сроком. Через месяц программа показывает, что стало с показателем и повторилась ли причина, — и человек оценивает, помогло ли действие.</p>
+      <div class="tags"><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">браузер</span><span class="tag">без облака</span><span class="tag">Excel как есть</span></div>
+    </div>
+    <ul class="points">
+      <li>Раскладку файла программа распознаёт сама. Необычный файл ей показывают щелчками по листу — где даты, названия и цифры; следующие файлы такого вида читаются сами</li>
+      <li>Показатель: цель или план из файла, допуск, состояние «в цели / в допуске / вне цели», тренд, итог с начала года</li>
+      <li>Причины: ТОП-3 с долей вклада. Программа подсказывает их из данных — виды дефектов, причины простоев, изделия с отставанием</li>
+      <li>Действия: ответственный, срок, статус. Перенос срока — только с причиной. Просроченные видны на главном экране</li>
+      <li>Эффект: показатель в месяце разбора и в месяце после срока, повторилась ли причина; оценка «помогло / частично / не помогло»</li>
+      <li>Совещание по показателям: что вне цели, причины, действия; протокол сохраняется и печатается</li>
+      <li>P&amp;L по месяцам с бюджетом и прогнозом; EBITDA и чистая прибыль считаются сами</li>
+      <li>Свои экраны для директора, главного инженера, финансиста: состав, порядок и размер плиток, вид карточки показателя</li>
+    </ul>
+  </div>
+  <div class="bench">
+    <div class="bench-top"><h3>Как это работает</h3><span class="demo-note">от файла до результата</span></div>
+    <ol class="flow">
+      <li>Файлы Excel завода</li><li>Показатель и цель</li><li>Отклонение</li><li>ТОП-3 причины</li><li>Действие: кто и когда</li><li>Статус и срок</li><li>Эффект через месяц</li>
+    </ol>
+    <div class="bench-top" style="border-top:1px solid var(--line);padding-top:18px">
+      <div class="chips" role="group" aria-label="Показатель"><span class="chips-label">Показатель:</span>
+        <button class="chip" type="button" data-zc="scrap" aria-pressed="true">Доля брака</button>
+        <button class="chip" type="button" data-zc="down" aria-pressed="false">Простои оборудования</button>
+        <button class="chip" type="button" data-zc="out" aria-pressed="false">Выпуск продукции</button>
+      </div>
+      <span class="demo-note">условные данные</span>
+    </div>
+    <div class="kpis" id="zc-kpis"></div>
+    <div class="grid2">
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:0"><h3 id="zc-ct">Три главные причины</h3><div class="bars" id="zc-causes"></div><p class="muted" id="zc-hint" style="font-size:13px;margin:0"></p></div>
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><h3>Действия по причинам</h3><div class="actions" id="zc-acts"></div></div>
+    </div>
+    <p id="zc-res" style="margin:0;border-top:1px solid var(--line);padding-top:14px"></p>
+  </div>
+</section>
+
+<section class="stand" id="zc-screens">
+  <div class="desc" style="display:flex;flex-direction:column;gap:8px">
+    <div class="eyebrow">Экраны «Завода в цифрах»</div>
+    <h2>От файла Excel до протокола совещания</h2>
+    <p>Снимки настоящей программы на примерных данных. <span class="hint">🔍 Нажмите на снимок, чтобы открыть крупно.</span></p>
+  </div>
+  <div class="gallery">
+    <figure><button type="button" class="shot"><img src="../img/zc-setup.webp" alt="Файл Excel читается как есть: программа показывает, что она взяла — даты, значения — и что пропустила" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Файл Excel читается как есть: программа показывает, что она взяла — даты, значения — и что пропустила</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-main.webp" alt="Показатели по разделам: состояние к цели, тренд, сравнение с прошлым месяцем и годом, «нет разбора причин»" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Показатели по разделам: состояние к цели, тренд, сравнение с прошлым месяцем и годом, «нет разбора причин»</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-card.webp" alt="Карточка показателя: динамика по дням к цели, месяцы и годы, из чего складывается" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Карточка показателя: динамика по дням к цели, месяцы и годы, из чего складывается</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-causes.webp" alt="Причины и действия: ТОП-3 с долей вклада, ответственный, срок, статус, показатель до и после" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Причины и действия: ТОП-3 с долей вклада, ответственный, срок, статус, показатель до и после</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-actions.webp" alt="Все действия: в работе, просрочено, выполнено в срок, сколько помогло" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Все действия: в работе, просрочено, выполнено в срок, сколько помогло</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-meeting.webp" alt="Совещание: показатель вне цели, его причины и действия со статусами — основа протокола" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Совещание: показатель вне цели, его причины и действия со статусами — основа протокола</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-pnl.webp" alt="P&amp;L по месяцам: факт к бюджету или прогнозу, ожидаемый год, прошлый год" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>P&amp;L по месяцам: факт к бюджету или прогнозу, ожидаемый год, прошлый год</figcaption></figure>
+    <figure><button type="button" class="shot"><img src="../img/zc-screens.webp" alt="Настройка экрана: плитки перетаскиваются, меняют размер; свой экран для каждого руководителя" loading="lazy" width="1100"><span class="zoom" aria-hidden="true">🔍 Увеличить</span></button><figcaption>Настройка экрана: плитки перетаскиваются, меняют размер; свой экран для каждого руководителя</figcaption></figure>
+  </div>
+</section>
+
 <section class="stand" id="dashboard">
   <div class="stand-head">
     <div class="desc">
-      <div class="eyebrow">Система 2</div>
+      <div class="eyebrow">Система 3 · с него начался «Завод в цифрах»</div>
       <h2>Дашборд производства, качества и простоев</h2>
       <p>Дашборд собирает данные из тех Excel-файлов, которые предприятие уже ведёт. Повторная загрузка не задваивает записи. Каждый показатель сравнивается с целью и с прошлым периодом.</p>
     </div>
@@ -213,7 +273,7 @@
 <section class="stand" id="capacity">
   <div class="stand-head">
     <div class="desc">
-      <div class="eyebrow">Система 3</div>
+      <div class="eyebrow">Система 4</div>
       <h2>Планирование выпуска и загрузки мощностей</h2>
       <p>По плану продаж модель считает, сколько полуфабрикатов каждого уровня нужно выпустить и когда запускать партии. Затем раскладывает работу по оборудованию и показывает, где не хватает мощности и сколько нужно сверхурочных.</p>
     </div>

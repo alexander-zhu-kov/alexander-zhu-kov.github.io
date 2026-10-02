@@ -360,3 +360,5 @@ a{color:var(--accent)}
 @media (max-width:560px){
   .topbar .tabs a{font-size:12.5px;padding:4px 10px}
 }
+/* 02.10.2026: на телефоне секции с широкими таблицами не растягивают страницу — прокручивается только сама таблица */
+.wrap>*,.stand,.stand>*,.grid2>*{min-width:0;max-width:100%}
