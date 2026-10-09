@@ -404,3 +404,6 @@ details.more>summary:focus-visible{outline:2px solid var(--accent);outline-offse
 .vid-grid figcaption{font-size:15px;line-height:1.4}
 .vid-grid figcaption span{display:block;color:var(--muted);font-size:14px;margin-top:2px}
 @media (max-width:760px){.vid-grid{grid-template-columns:minmax(0,1fr)}.vid-grid figure.wide{max-width:none}}
+
+.vid-card{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.vid-card p{margin:0}
