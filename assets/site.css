@@ -420,3 +420,11 @@ details.more>summary:focus-visible{outline:2px solid var(--accent);outline-offse
 .contact-bottom,.to-contacts{display:none}
 .to-contacts{margin-top:12px;font-size:14px}
 @media (max-width:860px){.hero2 .card-contact{display:none}.contact-bottom,.to-contacts{display:block}.hero2{padding-top:22px}}
+
+/* 10.10 версия 3.0 */
+.more-link{color:var(--accent);text-decoration:none;font-size:15px} .more-link:hover{text-decoration:underline}
+.tabs a{font-size:13px;padding:5px 10px}
+.facts.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.blocks.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:620px){.facts.six{grid-template-columns:repeat(2,minmax(0,1fr))}.blocks.two{grid-template-columns:minmax(0,1fr)}}
+.hero2 .tags{margin:16px 0 8px}

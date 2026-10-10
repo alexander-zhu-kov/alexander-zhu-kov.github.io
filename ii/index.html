@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ИИ-ассистент аналитика · Александр Жуков</title>
+<meta name="description" content="Как устроен ИИ-ассистент в программе «Завод в цифрах»: числа считает программа, модель пишет текст отчёта для совещания, выдумка подсвечивается, данные завода под контролем. И где ИИ на заводе уместен, а где нет.">
+<meta property="og:title" content="ИИ-ассистент аналитика · Александр Жуков">
+<meta property="og:description" content="Как устроен ИИ-ассистент в программе «Завод в цифрах»: числа считает программа, модель пишет текст отчёта для совещания, выдумка подсвечивается, данные завода под контролем. И где ИИ на заводе уместен, а где нет.">
+<meta property="og:image" content="https://alexander-zhu-kov.github.io/img/planerka.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../index.html">Александр Жуков<small>← на главную</small></a>
+  <nav class="tabs" aria-label="Разделы"><a href="../zavod/index.html" class=pt>Завод в цифрах</a><a href="../ii/index.html" class=pt aria-current="page">ИИ-ассистент</a><a href="../cifra/index.html" class=pt>План-факт</a><a href="../krizis/index.html">Аудит</a><a href="../sistema/index.html">Документы</a><a href="../podhod/index.html">Как строю</a></nav>
+</div></div>
+<div class="wrap">
+<main id="main" class="wrap" style="gap:56px">
+<header class="page-head">
+  <div class="eyebrow">Внедрение ИИ в производственную аналитику · в составе «Завода в цифрах» 0.5.6</div>
+  <h1>ИИ-ассистент аналитика</h1>
+  <p class="lead">Отчёт к совещанию обычно собирают днями: данные в разных файлах, выводы в чьей-то голове. Ассистент делает черновик за минуту: что вне цели, почему и на что обратить внимание. Числа считает программа, модель только описывает готовую таблицу, решает человек.</p>
+  <nav class="anchors" aria-label="На этой странице"><a href="#work">Как работает</a><a href="#video">В работе</a><a href="#safe">Защита от ошибок</a><a href="#where">Где ИИ уместен</a><a href="#how">Как я работаю с ИИ</a><a href="#next">Дальше</a></nav>
+</header>
+
+<section class="stand" id="work">
+  <div class="stand-head one">
+    <div class="desc">
+      <div class="eyebrow">Как работает</div>
+      <h2>Четыре шага от показателей до текста</h2>
+    </div>
+  </div>
+  <div class="phases">
+    <div class="ph"><span class="when">1</span><b>Выбор</b><span>Директор нажимает «Отчёт ИИ» на любой странице, выбирает период и показатели. Или пишет просьбу своими словами: «оцени риски годового плана».</span></div>
+    <div class="ph"><span class="when">2</span><b>Таблица</b><span>Программа сама считает выполнение, сравнение с планом, прошлым периодом и прошлым годом, отклонения и состояние. Получается готовая таблица.</span></div>
+    <div class="ph"><span class="when">3</span><b>Текст</b><span>В модель уходит только эта таблица, а не файлы завода. Видно, что именно ушло. Модель пишет текст для совещания: P&amp;L, отклонения, риски.</span></div>
+    <div class="ph"><span class="when">4</span><b>Проверка</b><span>Программа ищет в тексте числа, которых нет в таблице, и подсвечивает их. Текст правится, отчёт сохраняется в архиве (последние 30).</span></div>
+  </div>
+</section>
+
+<section class="stand" id="video">
+  <div class="stand-head one">
+    <div class="desc">
+      <div class="eyebrow">В работе</div>
+      <h2>Два ролика на условных данных</h2>
+    </div>
+  </div>
+  <div class="vid-card" style="margin-top:0">
+    <div class="vid-grid">
+      <figure>
+        <video controls preload="none" playsinline poster="../img/zavod-ai-poster.webp" width="1280" height="720"><source src="../video/zavod-ai-056.mp4" type="video/mp4">Видео не открылось в этом браузере.</video>
+        <figcaption><b>Отчёт для директора за минуту</b> · 93 с<span>Выбор показателей, текст отчёта, что ушло в модель, архив и настройка.</span></figcaption>
+      </figure>
+      <figure>
+        <video controls preload="none" playsinline poster="../img/zavod-pnl-poster.webp" width="1280" height="720"><source src="../video/zavod-pnl-risks.mp4" type="video/mp4">Видео не открылось в этом браузере.</video>
+        <figcaption><b>P&amp;L и оценка рисков</b> · 51 с<span>Отчёт по прибылям и убыткам и риски годового плана — по просьбе директора.</span></figcaption>
+      </figure>
+    </div>
+    <p class="muted">Данные условные. Текст отчётов в роликах подготовлен по настоящей таблице программы, проверка «чисел вне таблицы» пройдена. Подключение рабочей модели настраивает администратор.</p>
+  </div>
+</section>
+
+<section class="stand" id="safe">
+  <div class="stand-head one">
+    <div class="desc">
+      <div class="eyebrow">Защита от ошибок и утечек</div>
+      <h2>Что сделано, чтобы ассистенту можно было доверять</h2>
+    </div>
+  </div>
+  <div class="principles">
+    <div><h3>Модель не считает</h3><p>Все числа считает программа и сверяет с итогами файлов. Модель получает готовую таблицу и пишет только текст.</p></div>
+    <div><h3>Выдумка видна сразу</h3><p>Число в тексте, которого нет в таблице, подсвечивается как возможная выдумка. Её видит и директор, и тот, кто правит текст.</p></div>
+    <div><h3>Видно, что ушло в модель</h3><p>Запрос можно открыть целиком до отправки и после. Владельцы показателей и действий в запрос не входят никогда; персональные данные в облако не уходят по умолчанию; названия показателей можно обезличить.</p></div>
+    <div><h3>Локально или в облаке</h3><p>Администратор выбирает: модель на компьютере предприятия или облачный сервис, провайдера и ключ. Ключ хранится на сервере и в браузер не передаётся.</p></div>
+    <div><h3>По умолчанию выключен</h3><p>Ассистент включает только администратор. Предприятие, которому ИИ не нужен или нельзя, работает с программой так же.</p></div>
+    <div><h3>Проверяется автотестами</h3><p>Логика ассистента входит в 376 автотестов программы. Каждая найденная при проверке ошибка становится новым тестом.</p></div>
+  </div>
+</section>
+
+<section class="stand" id="where">
+  <div class="stand-head one">
+    <div class="desc">
+      <div class="eyebrow">Мой взгляд · как применять ИИ на заводе</div>
+      <h2>Где ИИ уместен, а где нет</h2>
+      <p class="muted">Правило, по которому построен ассистент: ИИ работает с текстом и смыслом, а расчёты и решения остаются за программой и человеком.</p>
+    </div>
+  </div>
+  <div class="blocks two">
+    <div class="blk"><h3>Уместен</h3><ul>
+      <li>Текст отчёта к совещанию по готовой таблице</li>
+      <li>Поиск ответа в регламентах и инструкциях обычным вопросом</li>
+      <li>Подсказка причин отклонения по журналам дефектов и простоев</li>
+      <li>Черновик протокола и поручений по итогам совещания</li>
+      <li>Подсказки при настройке незнакомого файла Excel</li>
+    </ul></div>
+    <div class="blk"><h3>Не уместен</h3><ul>
+      <li>Расчёт показателей, P&amp;L и себестоимости</li>
+      <li>Решения по людям: премии, увольнения, оценка работников</li>
+      <li>Автоматическое изменение плана и целей без человека</li>
+      <li>Передача в облако персональных данных и документов без явного решения</li>
+      <li>Любой вывод без возможности проверить исходные числа</li>
+    </ul></div>
+  </div>
+</section>
+
+<section class="stand" id="how">
+  <div class="stand-head one">
+    <div class="desc">
+      <div class="eyebrow">Как я работаю с ИИ</div>
+      <h2>Постановка и приёмка — мои, черновик — ИИ</h2>
+    </div>
+  </div>
+  <div class="principles">
+    <div><h3>В продукте</h3><p>Задача, границы и проверки определяются до подключения модели. Ассистент встроен в процесс совещания, а не лежит рядом отдельным чатом.</p></div>
+    <div><h3>В разработке</h3><p>Программы разрабатываю с помощью ИИ-ассистентов: требования, архитектуру, правила расчёта и приёмку определяю я, код проходит автотесты и проверку на файлах «как в жизни».</p></div>
+    <div><h3>В управлении</h3><p>Смотрю на ИИ как на нового сотрудника без доступа к деньгам и людям: полезен там, где его работу можно быстро проверить.</p></div>
+  </div>
+</section>
+
+<section class="stand" id="next">
+  <div class="stand-head one">
+    <div class="desc">
+      <div class="eyebrow">Что дальше</div>
+      <h2>Планы развития</h2>
+      <p class="muted">Это планы, не готовые функции.</p>
+    </div>
+  </div>
+  <div class="principles">
+    <div><h3>ИИ-помощник в «План-факте»</h3><p>Тот же принцип в программе ежедневного контроля: разбор причин простоев и брака, черновик протокола планёрки.</p></div>
+    <div><h3>Подсказки при настройке файлов</h3><p>Помощь при подключении незнакомой формы Excel: где даты, где показатели.</p></div>
+    <div><h3>Поиск по регламентам</h3><p>Вопрос обычными словами к системе документов завода с ответом и ссылкой на пункт.</p></div>
+  </div>
+</section>
+<nav class="next" aria-label="Соседние разделы"><a href="../zavod/index.html">← Завод в цифрах</a><a href="../cifra/index.html">План-факт →</a></nav>
+<footer>
+  <span>Все цифры и названия в примерах условные. Живую работу программы показываю на встрече.</span>
+  <span>© 2026 Жуков Александр · <a href="https://github.com/alexander-zhu-kov">GitHub</a></span>
+</footer>
+</main>
+</div>
+<dialog id="lb" aria-label="Снимок"><button type="button" class="lb-close" aria-label="Закрыть">✕</button><img alt=""><p class="lb-cap"></p><p class="lb-hint">Закрыть: ✕, клавиша Esc или нажатие рядом со снимком</p></dialog>
+<script src="../assets/site.js"></script>
+</body>
+</html>
